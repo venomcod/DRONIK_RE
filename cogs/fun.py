@@ -20,7 +20,7 @@ class Fun(commands.Cog):
         rnd = randint(1, 100)
         if rnd <= 5:
             try:
-                #await member.ban(reason="Лох проиграл АХАХАХАХАХАХА")
+                await member.ban(reason="Лох проиграл АХАХАХАХАХАХА")
                 await text_chnl.send("АХАХАХАХА ЛОХ")
             except Exception as exc:
                 print(f"Не удалось забанить {user_id}: {exc}")
