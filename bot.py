@@ -16,7 +16,7 @@ TOKEN_FILE = BASE_DIR / "token.txt"
 
 intents = discord.Intents.default()
 intents.message_content = True  # важно для чтения текста сообщений
-
+intents.members = True
 
 class MyBot(commands.Bot):
     def __init__(self):
