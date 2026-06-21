@@ -76,6 +76,20 @@ class Fun(commands.Cog):
                 await ctx.send(f"Не удалось выдать мут {member.mention}: {exc}")
         else:
             await ctx.send(f"{member.mention} повезло, мут не получил.")
+    @commands.command(name="sleep")
+    async def sleep(self, ctx: commands.Context):
+        try:
+            is_owner = await self.bot.is_owner(ctx.author)
+        except Exception:
+            is_owner = False
+
+        if not is_owner:
+            await ctx.send('Только владелец бота может использовать эту команду.')
+            return
+
+        await ctx.send('Выключаюсь. Пока!')
+        await self.bot.close()
+
 
     @ruletka_for_demyan.before_loop
     async def before_ruletka(self):
