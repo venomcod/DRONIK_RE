@@ -41,7 +41,7 @@ class Fun(commands.Cog):
         if member != dema:
             if rndl == 5:
                 try:
-                    until = discord.utils.utcnow() + timedelta(hours=1)
+                    until = discord.utils.utcnow() + timedelta(minutes=5)
                     await member.timeout(until)
                     await chnl.send(f"к сожалению {member.mention} проиграл. Выдан 1 час мута")
                     print(f"{member.mention} ЛОХ")
@@ -50,8 +50,32 @@ class Fun(commands.Cog):
                     print(f"{member.mention} ПИДР")
             else:
                 await chnl.send(f"{member.mention} выжил, молодец")
-        elif member == dema:
-            await chnl.send(f"А вот тебе нельзя пользоватся рулеткой, но но")
+        else:
+            await chnl.send("А вот тебе нельзя пользоваться рулеткой")
+
+    @commands.command(name="ruletka_user")
+    async def ruletka_user(self, ctx: commands.Context, member: discord.Member):
+        """Рулетка для выбранного пользователя. Мут на 1 час при проигрыше."""
+        allowed_users = {499507046681673728, 566316034462711829, 695855560402403338}  # замените на ID тех, кому доступна команда
+        if ctx.author.id not in allowed_users:
+            return await ctx.send("Эта команда доступна ТОЛЬКО ДЛЯ ИЗБРАННЫХ")
+
+        if member == ctx.guild.owner:
+            return await ctx.send("ТЫ ШО НА БАРИНА СОБРАЛСЯ ЗАПУСКАТЬ, ПЛОХОЙ МАЛЬЧИК☝🏿☝🏿")
+
+        if member == ctx.author:
+            return await ctx.send("Вы не можете выбрать себя для этой рулетки")
+
+        rnd = randint(1, 10)
+        if rnd == 5:
+            until = discord.utils.utcnow() + timedelta(minutes=5)
+            try:
+                await member.timeout(until)
+                await ctx.send(f"к сожалению {member.mention} проиграл. Выдан 1 час мута")
+            except Exception as exc:
+                await ctx.send(f"Не удалось выдать мут {member.mention}: {exc}")
+        else:
+            await ctx.send(f"{member.mention} повезло, мут не получил.")
 
     @ruletka_for_demyan.before_loop
     async def before_ruletka(self):
