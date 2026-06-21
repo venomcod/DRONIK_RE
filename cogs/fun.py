@@ -43,7 +43,7 @@ class Fun(commands.Cog):
                 try:
                     until = discord.utils.utcnow() + timedelta(minutes=5)
                     await member.timeout(until)
-                    await chnl.send(f"к сожалению {member.mention} проиграл. Выдан 1 час мута")
+                    await chnl.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
                     print(f"{member.mention} ЛОХ")
                 except:
                     await chnl.send(f"{member.mention} ПОХОЖЕ ОН ХУЙ ВАЖНЫЙ, не могу выдать мут")
@@ -71,7 +71,7 @@ class Fun(commands.Cog):
             until = discord.utils.utcnow() + timedelta(minutes=5)
             try:
                 await member.timeout(until)
-                await ctx.send(f"к сожалению {member.mention} проиграл. Выдан 1 час мута")
+                await ctx.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
             except Exception as exc:
                 await ctx.send(f"Не удалось выдать мут {member.mention}: {exc}")
         else:
