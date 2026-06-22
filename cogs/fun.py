@@ -44,10 +44,10 @@ class Fun(commands.Cog):
                     until = discord.utils.utcnow() + timedelta(minutes=5)
                     await member.timeout(until)
                     await chnl.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
-                    print(f"{member.mention} ЛОХ")
+                    print(f"{member} ЛОХ")
                 except:
                     await chnl.send(f"{member.mention} ПОХОЖЕ ОН ХУЙ ВАЖНЫЙ, не могу выдать мут")
-                    print(f"{member.mention} ПИДР")
+                    print(f"{member} ПИДР")
             else:
                 await chnl.send(f"{member.mention} выжил, молодец")
         else:
@@ -60,7 +60,7 @@ class Fun(commands.Cog):
         if ctx.author.id not in allowed_users:
             return await ctx.send("Эта команда доступна ТОЛЬКО ДЛЯ ИЗБРАННЫХ")
 
-        if member == ctx.guild.owner:
+        if member == ctx.guild.owner or member.id in allowed_users:
             return await ctx.send("ТЫ ШО НА БАРИНА СОБРАЛСЯ ЗАПУСКАТЬ, ПЛОХОЙ МАЛЬЧИК☝🏿☝🏿")
 
         if member == ctx.author:
