@@ -23,6 +23,19 @@ class General(commands.Cog):
     async def pong(self, ctx: commands.Context):
         await ctx.send("Ping! 🎾")
 
+    @commands.command(name="sleep")
+    async def sleep(self, ctx: commands.Context):
+        try:
+            is_owner = await self.bot.is_owner(ctx.author)
+        except Exception:
+            is_owner = False
+
+        if not is_owner:
+            await ctx.send('Только владелец бота может использовать эту команду.')
+            return
+
+        await ctx.send('Выключаюсь. Пока!')
+        await self.bot.close()
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(General(bot))

@@ -2,7 +2,6 @@ from discord.ext import commands, tasks
 import discord
 from datetime import timedelta
 from random import randint
-
 class Fun(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -55,41 +54,59 @@ class Fun(commands.Cog):
 
     @commands.command(name="ruletka_user")
     async def ruletka_user(self, ctx: commands.Context, member: discord.Member):
-        """Рулетка для выбранного пользователя. Мут на 1 час при проигрыше."""
-        allowed_users = {499507046681673728, 566316034462711829, 695855560402403338}  # замените на ID тех, кому доступна команда
+        """Рулетка для выбранного пользователя. Мут на 5 минут при проигрыше."""
+        allowed_users = {499507046681673728, 566316034462711829, 695855560402403338, 1001457686849785876, 690242065157980180}  # замените на ID тех, кому доступна команда
         if ctx.author.id not in allowed_users:
-            return await ctx.send("Эта команда доступна ТОЛЬКО ДЛЯ ИЗБРАННЫХ")
-
-        if member == ctx.guild.owner or member.id in allowed_users:
-            return await ctx.send("ТЫ ШО НА БАРИНА СОБРАЛСЯ ЗАПУСКАТЬ, ПЛОХОЙ МАЛЬЧИК☝🏿☝🏿")
-
-        if member == ctx.author:
-            return await ctx.send("Вы не можете выбрать себя для этой рулетки")
-
-        rnd = randint(1, 10)
-        if rnd == 5:
-            until = discord.utils.utcnow() + timedelta(minutes=5)
-            try:
-                await member.timeout(until)
-                await ctx.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
-            except Exception as exc:
-                await ctx.send(f"Не удалось выдать мут {member.mention}: {exc}")
+            if member.id in allowed_users:
+                await ctx.send("ТЫ ШО НА БАРИНА СОБРАЛСЯ ЗАПУСКАТЬ, ПЛОХОЙ МАЛЬЧИК☝🏿☝🏿, Кручу на тебя 5 раз")
+                for i in range(5):
+                    if ctx.author.is_timed_out():
+                        break
+                    else:
+                        rnd = randint(1, 10)
+                        if rnd == 5:
+                            try:
+                                until = discord.utils.utcnow() + timedelta(minutes=5)
+                                await ctx.author.timeout(until)
+                                await ctx.send(f"к сожалению {ctx.author.mention} проиграл. Выдано 5 минут мута")
+                                print(f"{ctx.author} ЛОХ")
+                            except:
+                                await ctx.send(f"{ctx.author.mention} ПОХОЖЕ ОН ХУЙ ВАЖНЫЙ, не могу выдать мут")
+                                print(f"{ctx.author} ПИДР")
+                        else:
+                            await ctx.send(f"{ctx.author.mention} выжил, молодец")
+            else:
+                await ctx.send("Эта команда доступна ТОЛЬКО ДЛЯ ИЗБРАННЫХ, Кручу на тебя)")
+                rnd = randint(1, 10)
+                if rnd == 5:
+                    try:
+                        until = discord.utils.utcnow() + timedelta(minutes=5)
+                        await ctx.author.timeout(until)
+                        await ctx.send(f"к сожалению {ctx.author.mention} проиграл. Выдано 5 минут мута")
+                        print(f"{ctx.author} ЛОХ")
+                    except:
+                        await ctx.send(f"{ctx.author.mention} ПОХОЖЕ ОН ХУЙ ВАЖНЫЙ, не могу выдать мут")
+                        print(f"{ctx.author} ПИДР")
+                else:
+                    await ctx.send(f"{ctx.author.mention} выжил, молодец")
         else:
-            await ctx.send(f"{member.mention} повезло, мут не получил.")
-    @commands.command(name="sleep")
-    async def sleep(self, ctx: commands.Context):
-        try:
-            is_owner = await self.bot.is_owner(ctx.author)
-        except Exception:
-            is_owner = False
+            if member == ctx.guild.owner or member.id in allowed_users:
+                return await ctx.send("ТЫ ШО НА БАРИНА СОБРАЛСЯ ЗАПУСКАТЬ, ПЛОХОЙ МАЛЬЧИК☝🏿☝🏿")
 
-        if not is_owner:
-            await ctx.send('Только владелец бота может использовать эту команду.')
-            return
+            if member == ctx.author:
+                return await ctx.send("Вы не можете выбрать себя для этой рулетки")
 
-        await ctx.send('Выключаюсь. Пока!')
-        await self.bot.close()
-
+            rnd = randint(1, 10)
+            if rnd == 5:
+                until = discord.utils.utcnow() + timedelta(minutes=5)
+                try:
+                    await member.timeout(until)
+                    await ctx.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
+                except Exception as exc:
+                    await ctx.send(f"Не удалось выдать мут {member.mention}: {exc}")
+            else:
+                await ctx.send(f"{member.mention} повезло, мут не получил.")
+    
 
     @ruletka_for_demyan.before_loop
     async def before_ruletka(self):
