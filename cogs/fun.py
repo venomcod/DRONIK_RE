@@ -5,7 +5,7 @@ from random import randint
 class Fun(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        #self.ruletka_for_demyan.start()
+        self.ruletka_for_demyan.start()
     
 
     @tasks.loop(hours=6)
