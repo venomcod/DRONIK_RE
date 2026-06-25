@@ -5,7 +5,7 @@ from random import randint
 class Fun(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.ruletka_for_demyan.start()
+        #self.ruletka_for_demyan.start()
     
 
     @tasks.loop(hours=6)
@@ -55,7 +55,7 @@ class Fun(commands.Cog):
     @commands.command(name="ruletka_user")
     async def ruletka_user(self, ctx: commands.Context, member: discord.Member):
         """Рулетка для выбранного пользователя. Мут на 5 минут при проигрыше."""
-        allowed_users = {499507046681673728, 566316034462711829, 695855560402403338, 1001457686849785876, 690242065157980180}  # замените на ID тех, кому доступна команда
+        allowed_users = {499507046681673728, 566316034462711829, 695855560402403338, 1001457686849785876, 690242065157980180, 934146382284095589}  # замените на ID тех, кому доступна команда
         if ctx.author.id not in allowed_users:
             if member.id in allowed_users:
                 await ctx.send("ТЫ ШО НА БАРИНА СОБРАЛСЯ ЗАПУСКАТЬ, ПЛОХОЙ МАЛЬЧИК☝🏿☝🏿, Кручу на тебя 5 раз")

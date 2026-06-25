@@ -18,6 +18,15 @@ intents = discord.Intents.default()
 intents.message_content = True  # важно для чтения текста сообщений
 intents.members = True
 
+# Здесь прямо перечисляются cogs, которые бот должен загрузить.
+# Укажите имена файлов без расширения .py из папки cogs.
+COGS = [
+    'general',
+    'fun',
+    #'music_windows',
+    'music_linux',
+]
+
 class MyBot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=intents)
@@ -26,15 +35,12 @@ class MyBot(commands.Bot):
         await self.load_cogs()
 
     async def load_cogs(self) -> None:
-        cogs_dir = BASE_DIR / "cogs"
-        for path in cogs_dir.glob("*.py"):
-            if path.name.startswith("_"):
-                continue
+        for cog_name in COGS:
             try:
-                await self.load_extension(f"cogs.{path.stem}")
-                print(f"Loaded cog: {path.stem}")
+                await self.load_extension(f"cogs.{cog_name}")
+                print(f"Loaded cog: {cog_name}")
             except Exception as exc:
-                print(f"Failed to load cog {path.stem}: {exc}")
+                print(f"Failed to load cog {cog_name}: {exc}")
 
 
 bot = MyBot()
