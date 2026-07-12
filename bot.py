@@ -25,6 +25,7 @@ COGS = [
     'fun',
     #'music_windows',
     'music_linux',
+    'moderate',
 ]
 
 class MyBot(commands.Bot):
