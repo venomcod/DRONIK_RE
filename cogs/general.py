@@ -4,17 +4,17 @@ class General(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.command(name="hello")
+    @commands.hybrid_command(name="hello")
     async def hello(self, ctx: commands.Context):
         """Простая команда: отправляет ответ в канал."""
         await ctx.send(f"Привет, {ctx.author.mention}! Я работаю.")
 
-    @commands.command(name="ping")
+    @commands.hybrid_command(name="ping")
     async def ping(self, ctx: commands.Context):
         """Проверка отклика бота."""
         await ctx.send("Pong! 🏓")
 
-    @commands.command(name="say")
+    @commands.hybrid_command(name="say")
     async def say(self, ctx: commands.Context, channel: discord.TextChannel, *, text: str):
         """Команда повторяет за пользователем."""
         try:
@@ -23,11 +23,11 @@ class General(commands.Cog):
         except:
             await ctx.send(f"Используйте только текстовые каналы!")
     
-    @commands.command(name="pong")
+    @commands.hybrid_command(name="pong")
     async def pong(self, ctx: commands.Context):
         await ctx.send("Ping! 🎾")
 
-    @commands.command(name="sleep")
+    @commands.hybrid_command(name="sleep")
     async def sleep(self, ctx: commands.Context):
         try:
             is_owner = await self.bot.is_owner(ctx.author)

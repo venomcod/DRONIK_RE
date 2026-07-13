@@ -6,7 +6,7 @@ class Moderate(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
-    @commands.command(name="dvesti")
+    @commands.hybrid_command(name="dvesti")
     async def dvesti(self, ctx: commands.Context, member: discord.Member):
         channel = ctx.guild.get_channel(1293249841501306933)
         tm = discord.utils.utcnow() + timedelta(minutes=5)
@@ -23,7 +23,7 @@ class Moderate(commands.Cog):
         else:
             await ctx.author.timeout(tm)
             await ctx.send(f"{ctx.author.mention} зачем то стреляет в себя")
-    @commands.command(name="trista")
+    @commands.hybrid_command(name="trista")
     async def trista(self, ctx: commands.Context, member: discord.Member):
         channel = ctx.guild.get_channel(1293249841501306933)
         tm = discord.utils.utcnow() + timedelta(minutes=1)

@@ -28,7 +28,7 @@ class Fun(commands.Cog):
             await text_chnl.send("к сожалению Демьян сегодня выжил")
         print("Была выполнена попытка")
     
-    @commands.command("ruletka")
+    @commands.hybrid_command("ruletka")
     async def ruletka(self, ctx: commands.Context, rolls: int = 1):
         member = ctx.author
         guild_id = 849591676066725898
@@ -53,7 +53,7 @@ class Fun(commands.Cog):
                 else:
                     await chnl.send(f"{member.mention} выжил, молодец")
 
-    @commands.command(name="ruletka_user")
+    @commands.hybrid_command(name="ruletka_user")
     async def ruletka_user(self, ctx: commands.Context, member: discord.Member, rolls: int = 1):
         """Рулетка для выбранного пользователя. Мут на 5 минут при проигрыше."""
         allowed_users = {499507046681673728, 566316034462711829, 695855560402403338}  # замените на ID тех, кому доступна команда
