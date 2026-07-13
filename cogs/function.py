@@ -39,6 +39,16 @@ class Function(commands.Cog):
             await self._send_reply(ctx, f"У бота нет прав на удаление сообщений в канале {channel.mention}")
         except Exception as exc:
             await self._send_reply(ctx, f"Не удалось удалить сообщения в канале {channel.mention}: {exc}")
+    
+    @commands.hybrid_command(name="avatar")
+    async def avatar(self, ctx: commands.Context, member: discord.Member = None):
+        """Присылает сыллку на аватар пользователя"""
+        target = member or ctx.author
+        try:
+            ava = target.avatar.url
+            await ctx.send(ava)
+        except Exception:
+            await ctx.send(f"Не удалось получить аватар {target.mention}")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Function(bot))
