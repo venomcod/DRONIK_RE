@@ -8,6 +8,7 @@ class Moderate(commands.Cog):
     
     @commands.hybrid_command(name="dvesti")
     async def dvesti(self, ctx: commands.Context, member: discord.Member):
+        """Выдаёт мут на 5 минут и сообщает об этом в общем чате"""
         channel = ctx.guild.get_channel(1293249841501306933)
         tm = discord.utils.utcnow() + timedelta(minutes=5)
         alowed_users = {499507046681673728, 695855560402403338, 566316034462711829}
@@ -25,6 +26,7 @@ class Moderate(commands.Cog):
             await ctx.send(f"{ctx.author.mention} зачем то стреляет в себя")
     @commands.hybrid_command(name="trista")
     async def trista(self, ctx: commands.Context, member: discord.Member):
+        """Выдаёт мут на 1 минуту и сообщает об этом в общем чате"""
         channel = ctx.guild.get_channel(1293249841501306933)
         tm = discord.utils.utcnow() + timedelta(minutes=1)
         alowed_users = {499507046681673728, 695855560402403338, 566316034462711829}

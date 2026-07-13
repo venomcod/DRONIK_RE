@@ -17,8 +17,9 @@ class Function(commands.Cog):
         else:
             await ctx.send(content)
 
-    @commands.hybrid_command(name="delete", description="Удаляет определёное кол-во сообщений из чата")
+    @commands.hybrid_command(name="delete")
     async def delete(self, ctx: commands.Context, channel: discord.TextChannel, count: int):
+        """Удаляет указанное количество сообщений из канала"""
         permissions = channel.permissions_for(ctx.author)
         if not permissions.manage_messages:
             return await self._send_reply(ctx, "У тебя нет права на удаление сообщений в этом канале")

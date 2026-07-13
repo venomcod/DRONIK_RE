@@ -5,7 +5,7 @@ from random import randint
 class Fun(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        #self.ruletka_for_demyan.start() Отключил рулетку для демы
+        # self.ruletka_for_demyan.start() — отключил рулетку для демо
     
 
     @tasks.loop(hours=6)
@@ -30,6 +30,7 @@ class Fun(commands.Cog):
     
     @commands.hybrid_command("ruletka")
     async def ruletka(self, ctx: commands.Context, rolls: int = 1):
+        """Крутишь рулетку на себя. При проигрыше даётся мут на 5 минут"""
         member = ctx.author
         guild_id = 849591676066725898
         guild = self.bot.get_guild(guild_id)
@@ -54,7 +55,7 @@ class Fun(commands.Cog):
 
     @commands.hybrid_command(name="ruletka_user")
     async def ruletka_user(self, ctx: commands.Context, member: discord.Member, rolls: int = 1):
-        """Рулетка для выбранного пользователя. Мут на 5 минут при проигрыше."""
+        """Рулетка для выбранного пользователя. При проигрыше выдаётся мут на 5 минут"""
         allowed_users = {499507046681673728, 566316034462711829, 695855560402403338}  # замените на ID тех, кому доступна команда
         if ctx.author.id not in allowed_users:
             if member.id in allowed_users:

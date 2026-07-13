@@ -6,7 +6,7 @@ class General(commands.Cog):
 
     @commands.hybrid_command(name="hello")
     async def hello(self, ctx: commands.Context):
-        """Простая команда: отправляет ответ в канал."""
+        """Простая команда: отправляет ответ в канал"""
         await ctx.send(f"Привет, {ctx.author.mention}! Я работаю.")
 
     @commands.hybrid_command(name="ping")
@@ -16,7 +16,7 @@ class General(commands.Cog):
 
     @commands.hybrid_command(name="say")
     async def say(self, ctx: commands.Context, channel: discord.TextChannel, *, text: str):
-        """Команда повторяет за пользователем."""
+        """Команда повторяет за пользователем в определеном канале"""
         try:
             await ctx.send(f"Сообщение отправлено:{text}")
             await channel.send(text)
@@ -25,10 +25,12 @@ class General(commands.Cog):
     
     @commands.hybrid_command(name="pong")
     async def pong(self, ctx: commands.Context):
+        """Проверка отклика бота."""
         await ctx.send("Ping! 🎾")
 
     @commands.hybrid_command(name="sleep")
     async def sleep(self, ctx: commands.Context):
+        """Выключает бота. Доступно только владельцу бота"""
         try:
             is_owner = await self.bot.is_owner(ctx.author)
         except Exception:
