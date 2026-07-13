@@ -26,6 +26,7 @@ COGS = [
     #'music_windows',
     'music_linux',
     'moderate',
+    "function",
 ]
 
 class MyBot(commands.Bot):
@@ -49,6 +50,7 @@ bot = MyBot()
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
     print(f"Bot logged in as {bot.user} (ID: {bot.user.id})")
     print("Ready to receive commands.")
 

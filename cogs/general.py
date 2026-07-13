@@ -1,5 +1,5 @@
 from discord.ext import commands
-
+import discord
 class General(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -15,9 +15,13 @@ class General(commands.Cog):
         await ctx.send("Pong! 🏓")
 
     @commands.command(name="say")
-    async def say(self, ctx: commands.Context, *, text: str):
+    async def say(self, ctx: commands.Context, channel: discord.TextChannel, *, text: str):
         """Команда повторяет за пользователем."""
-        await ctx.send(text)
+        try:
+            await ctx.send(f"Сообщение отправлено:{text}")
+            await channel.send(text)
+        except:
+            await ctx.send(f"Используйте только текстовые каналы!")
     
     @commands.command(name="pong")
     async def pong(self, ctx: commands.Context):
