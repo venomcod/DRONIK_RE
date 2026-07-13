@@ -33,7 +33,6 @@ class Fun(commands.Cog):
         member = ctx.author
         guild_id = 849591676066725898
         guild = self.bot.get_guild(guild_id)
-        chnl = ctx.channel
         if rolls < 0 or rolls > 6:
             return await ctx.send("Можно вписывать только целые числа больше 0 и небольше 6")
         for i in range(rolls):
@@ -45,13 +44,13 @@ class Fun(commands.Cog):
                     try:
                         until = discord.utils.utcnow() + timedelta(minutes=5)
                         await member.timeout(until)
-                        await chnl.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
+                        await ctx.send(f"к сожалению {member.mention} проиграл. Выдано 5 минут мута")
                         print(f"{member} ЛОХ")
                     except:
-                        await chnl.send(f"{member.mention} ПОХОЖЕ ОН ХУЙ ВАЖНЫЙ, не могу выдать мут")
+                        await ctx.send(f"{member.mention} ПОХОЖЕ ОН ХУЙ ВАЖНЫЙ, не могу выдать мут")
                         print(f"{member} ПИДР")
                 else:
-                    await chnl.send(f"{member.mention} выжил, молодец")
+                    await ctx.send(f"{member.mention} выжил, молодец")
 
     @commands.hybrid_command(name="ruletka_user")
     async def ruletka_user(self, ctx: commands.Context, member: discord.Member, rolls: int = 1):
