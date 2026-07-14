@@ -115,6 +115,10 @@ class Fun(commands.Cog):
                     else:
                         await ctx.send(f"{member.mention} повезло, мут не получил.")
     
+    @commands.hybrid_command(name="femboy")
+    async def femboy(self, ctx: commands.Context, member: discord.Member):
+        await member.edit(nick="Фембойчик")
+    
 
     @ruletka_for_demyan.before_loop
     async def before_ruletka(self):
