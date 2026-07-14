@@ -19,6 +19,7 @@ class Moderate(commands.Cog):
                 try:
                     await member.timeout(tm)
                     await channel.send(f"{member.mention} 200")
+                    await ctx.send(f"{member.mention} выдано 200(5 минут)")
                 except:
                     await ctx.send("У него иммунитет к 200")
         else:
@@ -37,6 +38,7 @@ class Moderate(commands.Cog):
                 try:
                     await member.timeout(tm)
                     await channel.send(f"{member.mention} 300")
+                    await ctx.send(f"{member.mention} выдано 300(1 минута)")
                 except:
                     await ctx.send("У него иммунитет к 300")
         else:
