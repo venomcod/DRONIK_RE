@@ -27,6 +27,7 @@ COGS = [
     'music_linux',
     'moderate',
     "function",
+    #"epedemic"
 ]
 
 class MyBot(commands.Bot):
