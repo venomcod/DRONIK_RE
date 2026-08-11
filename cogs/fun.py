@@ -119,35 +119,35 @@ class Fun(commands.Cog):
     async def femboy(self, ctx: commands.Context, member: discord.Member):
         await member.edit(nick="Фембойчик")
     
-    @commands.hybrid_command(name="shufle")
-    async def shufle(self, ctx: commands.Context, member: discord.Member, count: int = 3):
-        voice_state = member.voice
-        allowed_user = {499507046681673728, 695855560402403338}
+    # @commands.hybrid_command(name="shufle")
+    # async def shufle(self, ctx: commands.Context, member: discord.Member, count: int = 3):
+    #     voice_state = member.voice
+    #     allowed_user = {499507046681673728, 695855560402403338}
 
-        if ctx.author.id not in allowed_user:
-            await ctx.send("Даже не пробуй жалкий смертный")
-            return
+    #     if ctx.author.id not in allowed_user:
+    #         await ctx.send("Даже не пробуй жалкий смертный")
+    #         return
 
-        if voice_state is None or voice_state.channel is None:
-            print(f"{member} сейчас не находится в голосовом канале")
-            await ctx.send(f"{member.mention} сейчас не в голосовом канале")
-            return
+    #     if voice_state is None or voice_state.channel is None:
+    #         print(f"{member} сейчас не находится в голосовом канале")
+    #         await ctx.send(f"{member.mention} сейчас не в голосовом канале")
+    #         return
 
-        first_channel = voice_state.channel.id
-        for i in range(count):
-            chns = [1048224741422542868, 1479487550027468962, 1205551019572854835, 1279394019184476192, 1436709459744264324, 1316393262042320996]
-            channel_id = voice_state.channel.id
-            chns.remove(channel_id)
-            rnd = randint(0, 4)
-            try:
-                await member.move_to(ctx.guild.get_channel(chns[rnd]))
-            except:
-                print(f"Не удалось переместить {member.mention} в канал {ctx.guild.get_channel(chns[rnd])}")
-                break
-        try:
-            await member.move_to(ctx.guild.get_channel(first_channel))
-        except:
-            print(f"Не удалось переместить {member.mention} в канал {ctx.guild.get_channel(first_channel)}")
+    #     first_channel = voice_state.channel.id
+    #     for i in range(count):
+    #         chns = [1048224741422542868, 1479487550027468962, 1205551019572854835, 1279394019184476192, 1436709459744264324, 1316393262042320996]
+    #         channel_id = voice_state.channel.id
+    #         chns.remove(channel_id)
+    #         rnd = randint(0, 4)
+    #         try:
+    #             await member.move_to(ctx.guild.get_channel(chns[rnd]))
+    #         except:
+    #             print(f"Не удалось переместить {member.mention} в канал {ctx.guild.get_channel(chns[rnd])}")
+    #             break
+    #     try:
+    #         await member.move_to(ctx.guild.get_channel(first_channel))
+    #     except:
+    #         print(f"Не удалось переместить {member.mention} в канал {ctx.guild.get_channel(first_channel)}")
             
 
     @ruletka_for_demyan.before_loop
