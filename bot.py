@@ -28,7 +28,8 @@ COGS = [
     'moderate',
     "function",
     #"epedemic",
-    'shuffle'
+    'shuffle',
+    'report',
 ]
 
 class MyBot(commands.Bot):
