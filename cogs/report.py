@@ -6,15 +6,16 @@ from discord.ext import commands
 # ID канала по умолчанию для отправки жалоб
 DEFAULT_REPORT_CHANNEL_ID = 1039855192281198593
 
+# Список ID пользователей, которым разрешено принимать решения по жалобам (рассматривать кнопки)
+ALLOWED_MODERATOR_IDS = {
+    499507046681673728,
+    695855560402403338
+}
+
 
 def is_moderator(member: discord.Member) -> bool:
-    """Проверяет, есть ли у пользователя права модератора."""
-    return (
-        member.guild_permissions.moderate_members
-        or member.guild_permissions.kick_members
-        or member.guild_permissions.ban_members
-        or member.guild_permissions.administrator
-    )
+    """Проверяет, разрешено ли пользователю принимать решения по жалобам."""
+    return member.id in ALLOWED_MODERATOR_IDS or member == member.guild.owner
 
 
 # --- Модальные окна для модераторов ---
